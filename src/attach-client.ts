@@ -74,7 +74,7 @@ export class AttachClient {
 	 */
 	private connect(): Promise<net.Socket> {
 		return new Promise((resolve, reject) => {
-			const socket = net.createConnection(path.join(os.homedir(), ".terminalcp", "server.sock"));
+			const socket = net.createConnection((process.platform === "win32" ? `\\\\.\\pipe\\terminalcp-${os.userInfo().username}` : path.join(os.homedir(), ".terminalcp", "server.sock")));
 
 			socket.once("connect", () => {
 				resolve(socket);

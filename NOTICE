@@ -1,0 +1,8 @@
+terminalcp (markkennethbadilla fork)
+
+Original work by Mario Zechner: https://github.com/badlogic/terminalcp
+Published on npm as @mariozechner/terminalcp; its package.json declares
+"license": "MIT". The upstream repository carries no LICENSE file, so none
+is added here. This fork is kept for personal use by Mark Kenneth Badilla.
+
+Fork changes are listed in specs/001-windows-named-pipe/spec.md.

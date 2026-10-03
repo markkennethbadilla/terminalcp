@@ -33,7 +33,7 @@ const CLIENT_VERSION = packageJson.version;
 
 export class TerminalClient {
 	private socket?: net.Socket;
-	private serverSocketPath = path.join(os.homedir(), ".terminalcp", "server.sock");
+	private serverSocketPath = (process.platform === "win32" ? `\\\\.\\pipe\\terminalcp-${os.userInfo().username}` : path.join(os.homedir(), ".terminalcp", "server.sock"));
 	// biome-ignore lint/suspicious/noExplicitAny: Hard to type this without a lot of effort
 	private pendingRequests = new Map<string, { resolve: (result: any) => void; reject: (error: Error) => void }>();
 	private eventHandlers = new Map<string, (event: ServerEvent) => void>();

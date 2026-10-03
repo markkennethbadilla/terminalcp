@@ -279,7 +279,7 @@ if (args[0] === "--mcp") {
 			});
 	} else if (args[0] === "kill-server") {
 		// Check if server is running first
-		const socketPath = path.join(os.homedir(), ".terminalcp", "server.sock");
+		const socketPath = (process.platform === "win32" ? `\\\\.\\pipe\\terminalcp-${os.userInfo().username}` : path.join(os.homedir(), ".terminalcp", "server.sock"));
 		if (!fs.existsSync(socketPath)) {
 			console.error("No server running");
 			process.exit(1);

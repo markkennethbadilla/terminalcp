@@ -19,7 +19,7 @@ export class TerminalServer {
 	private server?: net.Server;
 	private clients = new Map<string, net.Socket>();
 	private sessionSubscribers = new Map<string, Set<string>>(); // sessionId -> Set<clientId>
-	public readonly serverSocketPath = path.join(os.homedir(), ".terminalcp", "server.sock");
+	public readonly serverSocketPath = (process.platform === "win32" ? `\\\\.\\pipe\\terminalcp-${os.userInfo().username}` : path.join(os.homedir(), ".terminalcp", "server.sock"));
 	private clientCounter = 0;
 
 	constructor() {
@@ -377,7 +377,7 @@ export async function startServer(): Promise<void> {
 	let args: string[];
 
 	// Check if we're running via tsx (development) or from dist
-	const scriptPath = new URL(import.meta.url).pathname;
+	const scriptPath = fileURLToPath(import.meta.url);
 	const isTypescript = scriptPath.includes("/src/");
 
 	if (isTypescript) {
