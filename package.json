@@ -43,7 +43,7 @@
 	},
 	"types": "./dist/index.d.ts",
 	"dependencies": {
-		"@anthropic-ai/claude-code": "^1.0.77",
+		"@anthropic-ai/claude-code": "^2.1.251",
 		"@anthropic-ai/sdk": "^0.60.0",
 		"@modelcontextprotocol/sdk": "^1.17.2",
 		"@xterm/headless": "^5.5.0",
