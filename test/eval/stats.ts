@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 
-import { query, type SDKMessage } from "@anthropic-ai/claude-code";
+import { query, type SDKMessage } from "@anthropic-ai/claude-agent-sdk";
 import chalk from "chalk";
 import * as fs from "fs";
 import * as path from "path";
@@ -35,7 +35,7 @@ async function claude(promptFile: string, systemPrompt?: string): Promise<string
 	for await (const message of query({
 		prompt: `Read ${promptFile} in full and follow the instructions`,
 		options: {
-			customSystemPrompt: systemPrompt,
+			systemPrompt: systemPrompt,
 			maxTurns: 100,
 			allowedTools: ["Read"],
 			mcpServers: {},
